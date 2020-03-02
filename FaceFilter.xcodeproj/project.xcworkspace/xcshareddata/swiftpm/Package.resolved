@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GPUImage",
+        "repositoryURL": "https://github.com/BradLarson/GPUImage2.git",
+        "state": {
+          "branch": "master",
+          "revision": "3a2275e48716a6ebdab0d4098bd7d90321ef4143",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

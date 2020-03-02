@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,10 @@
 		69A1A4EC240DAA9800190879 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 69A1A4EA240DAA9800190879 /* LaunchScreen.storyboard */; };
 		69A1A4F7240DAA9800190879 /* FaceFilterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A4F6240DAA9800190879 /* FaceFilterTests.swift */; };
 		69A1A502240DAA9800190879 /* FaceFilterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A501240DAA9800190879 /* FaceFilterUITests.swift */; };
+		69A1A510240DABE300190879 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A50F240DABE300190879 /* ImageFilter.swift */; };
+		69A1A513240DAC5D00190879 /* GPUImage in Frameworks */ = {isa = PBXBuildFile; productRef = 69A1A512240DAC5D00190879 /* GPUImage */; };
+		69A1A515240DACFC00190879 /* ImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A514240DACFC00190879 /* ImageAction.swift */; };
+		69A1A517240DB04900190879 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A516240DB04900190879 /* CollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,9 @@
 		69A1A4FD240DAA9800190879 /* FaceFilterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceFilterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		69A1A501240DAA9800190879 /* FaceFilterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceFilterUITests.swift; sourceTree = "<group>"; };
 		69A1A503240DAA9800190879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69A1A50F240DABE300190879 /* ImageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
+		69A1A514240DACFC00190879 /* ImageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAction.swift; sourceTree = "<group>"; };
+		69A1A516240DB04900190879 /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A1A513240DAC5D00190879 /* GPUImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +114,9 @@
 				69A1A4E8240DAA9800190879 /* Assets.xcassets */,
 				69A1A4EA240DAA9800190879 /* LaunchScreen.storyboard */,
 				69A1A4ED240DAA9800190879 /* Info.plist */,
+				69A1A50F240DABE300190879 /* ImageFilter.swift */,
+				69A1A514240DACFC00190879 /* ImageAction.swift */,
+				69A1A516240DB04900190879 /* CollectionViewCell.swift */,
 			);
 			path = FaceFilter;
 			sourceTree = "<group>";
@@ -144,6 +155,9 @@
 			dependencies = (
 			);
 			name = FaceFilter;
+			packageProductDependencies = (
+				69A1A512240DAC5D00190879 /* GPUImage */,
+			);
 			productName = FaceFilter;
 			productReference = 69A1A4DC240DAA9500190879 /* FaceFilter.app */;
 			productType = "com.apple.product-type.application";
@@ -216,6 +230,9 @@
 				Base,
 			);
 			mainGroup = 69A1A4D3240DAA9500190879;
+			packageReferences = (
+				69A1A511240DAC5D00190879 /* XCRemoteSwiftPackageReference "GPUImage2" */,
+			);
 			productRefGroup = 69A1A4DD240DAA9500190879 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -260,7 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				69A1A4E4240DAA9500190879 /* ViewController.swift in Sources */,
+				69A1A510240DABE300190879 /* ImageFilter.swift in Sources */,
+				69A1A517240DB04900190879 /* CollectionViewCell.swift in Sources */,
 				69A1A4E0240DAA9500190879 /* AppDelegate.swift in Sources */,
+				69A1A515240DACFC00190879 /* ImageAction.swift in Sources */,
 				69A1A4E2240DAA9500190879 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,6 +610,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		69A1A511240DAC5D00190879 /* XCRemoteSwiftPackageReference "GPUImage2" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BradLarson/GPUImage2.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		69A1A512240DAC5D00190879 /* GPUImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 69A1A511240DAC5D00190879 /* XCRemoteSwiftPackageReference "GPUImage2" */;
+			productName = GPUImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 69A1A4D4240DAA9500190879 /* Project object */;
 }
