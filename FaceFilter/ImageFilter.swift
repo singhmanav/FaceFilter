@@ -88,5 +88,4 @@ enum ImageFilter: String, Identifiable, Hashable, CaseIterable {
             pictureInput.processImage(synchronously:true)
         }
     }
-    
 }
