@@ -8,7 +8,7 @@
 
 import UIKit
 import GPUImage
-let serialQueue = DispatchQueue(label: "com.alfianlosari.imagefilter")
+let serialQueue = DispatchQueue(label: "com.imagefilter")
 
 enum ImageFilter: String, Identifiable, Hashable, CaseIterable {
     
@@ -33,15 +33,13 @@ enum ImageFilter: String, Identifiable, Hashable, CaseIterable {
     case sepia = "Sepia"
     case vibrance = "Vibrance"
     
-    func performFilter(with image: UIImage, queue: DispatchQueue = serialQueue, completion: @escaping(UIImage) -> ()) {
+    func performFilter(with image: UIImage, queue: DispatchQueue = serialQueue, completion: @escaping(UIImage?) -> ()) {
         queue.async {
             let pictureInput = PictureInput(image: image)
             let pictureOutput = PictureOutput()
             switch self {
             case .default:
-                DispatchQueue.main.async {
-                    completion(image)
-                }
+                completion(image)
                 return
                 
             case .polkadot:
@@ -81,9 +79,9 @@ enum ImageFilter: String, Identifiable, Hashable, CaseIterable {
             }
             
             pictureOutput.imageAvailableCallback = { image in
-                DispatchQueue.main.async {
-                    completion(image)
-                }
+                let compressData = image.jpegData(compressionQuality: 0.5)
+                let compressedImage = UIImage(data: compressData!)
+                completion(compressedImage)
             }
             pictureInput.processImage(synchronously:true)
         }

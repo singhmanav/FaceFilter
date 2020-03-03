@@ -12,20 +12,41 @@ class ViewController: UIViewController {
     static let headerElementKind = "header-element-kind"
     
     @IBOutlet weak var container: UIView!
-    var image: UIImage!
+    var image: UIImage! {
+        didSet {
+            imageView.image = image
+        }
+    }
     @IBOutlet weak var imageView: UIImageView!
     var collectionView: UICollectionView!
     enum SectionKind: Int, CaseIterable {
         case image
     }
-    let imageCache = NSCache<NSString, UIImage>()
-    var dataSource: UICollectionViewDiffableDataSource<Int, UIImage>! = nil
+    var snapshot = NSDiffableDataSourceSnapshot<Int, Model>()
+    var dataSource: UICollectionViewDiffableDataSource<Int, Model>! = nil
+    private lazy var imagePicker: UIImagePickerController = {
+        return UIImagePickerController()
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         image = #imageLiteral(resourceName: "photo")
         configureHierarchy()
         configureDataSource()
+        updateDataSource()
+    }
+    
+    @IBAction func add(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
+            imagePicker.delegate = self
+            imagePicker.sourceType = .savedPhotosAlbum
+            imagePicker.allowsEditing = false
+            present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func save(_ sender: Any) {
+        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
 }
 
@@ -66,51 +87,52 @@ extension ViewController {
         collectionView.alwaysBounceVertical = false
         collectionView.contentInsetAdjustmentBehavior = .never
         container.addSubview(collectionView)
-        
         collectionView.delegate = self
     }
     
+    
+    
     func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, UIImage>(collectionView: collectionView) {
-            (collectionView: UICollectionView, indexPath: IndexPath, image: UIImage) -> UICollectionViewCell? in
+        dataSource = UICollectionViewDiffableDataSource<Int, Model>(collectionView: collectionView) {
+            (collectionView: UICollectionView, indexPath: IndexPath, model: Model) -> UICollectionViewCell? in
             
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ImageCell.reuseIdentifier, for: indexPath) as? ImageCell
                 else { fatalError("Cannot create new cell") }
-            cell.image = image
-            cell.imageContentMode = .scaleAspectFit
-            cell.clipsToBounds = true
-            cell.layer.cornerRadius = 10
-            cell.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner]
+            cell.image = model.image
+            cell.title = model.filter
             return cell
         }
-        
-        var snapshot = NSDiffableDataSourceSnapshot<Int, UIImage>()
+    }
+    
+    func updateDataSource() {
         snapshot.appendSections([0])
         ImageFilter.allCases.forEach { (identifier) in
             identifier.performFilter(with: self.image, completion: { [unowned self] (image) in
-                snapshot.appendItems([image])
-                self.dataSource.apply(snapshot, animatingDifferences: false)
+                DispatchQueue.main.async {
+                    self.snapshot.appendItems([Model(image: image, filter: identifier.rawValue)])
+                    self.dataSource.apply(self.snapshot, animatingDifferences: true)
+                }
             })
         }
-        
-        
-    }
-    
-    func getFilteredImage(imageFilter: ImageFilter, imageKey: String, completion:  @escaping (_ image: UIImage, _ imageKey: String) -> Void) {
-        if let cachedImage = imageCache.object(forKey: imageKey as NSString) {
-            completion(cachedImage, imageKey)
-        }
-        imageFilter.performFilter(with: self.image, completion: { (image) in
-            self.imageCache.setObject(image, forKey: imageKey as NSString)
-            completion(image, imageKey)
-        })
     }
 }
 
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        imageView.image = (collectionView.cellForItem(at: indexPath) as? ImageCell)?.image
+        image = (collectionView.cellForItem(at: indexPath) as? ImageCell)?.image
+    }
+}
+
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            self.image = image
+            self.snapshot.deleteAllItems()
+            updateDataSource()
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
 

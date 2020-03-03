@@ -17,8 +17,8 @@
 		69A1A502240DAA9800190879 /* FaceFilterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A501240DAA9800190879 /* FaceFilterUITests.swift */; };
 		69A1A510240DABE300190879 /* ImageFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A50F240DABE300190879 /* ImageFilter.swift */; };
 		69A1A513240DAC5D00190879 /* GPUImage in Frameworks */ = {isa = PBXBuildFile; productRef = 69A1A512240DAC5D00190879 /* GPUImage */; };
-		69A1A515240DACFC00190879 /* ImageAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A514240DACFC00190879 /* ImageAction.swift */; };
 		69A1A517240DB04900190879 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A516240DB04900190879 /* ImageCell.swift */; };
+		69A1A519240DD21B00190879 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A1A518240DD21B00190879 /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +54,8 @@
 		69A1A501240DAA9800190879 /* FaceFilterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceFilterUITests.swift; sourceTree = "<group>"; };
 		69A1A503240DAA9800190879 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		69A1A50F240DABE300190879 /* ImageFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageFilter.swift; sourceTree = "<group>"; };
-		69A1A514240DACFC00190879 /* ImageAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAction.swift; sourceTree = "<group>"; };
 		69A1A516240DB04900190879 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		69A1A518240DD21B00190879 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +115,8 @@
 				69A1A4EA240DAA9800190879 /* LaunchScreen.storyboard */,
 				69A1A4ED240DAA9800190879 /* Info.plist */,
 				69A1A50F240DABE300190879 /* ImageFilter.swift */,
-				69A1A514240DACFC00190879 /* ImageAction.swift */,
 				69A1A516240DB04900190879 /* ImageCell.swift */,
+				69A1A518240DD21B00190879 /* Model.swift */,
 			);
 			path = FaceFilter;
 			sourceTree = "<group>";
@@ -276,11 +276,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A1A519240DD21B00190879 /* Model.swift in Sources */,
 				69A1A4E4240DAA9500190879 /* ViewController.swift in Sources */,
 				69A1A510240DABE300190879 /* ImageFilter.swift in Sources */,
 				69A1A517240DB04900190879 /* ImageCell.swift in Sources */,
 				69A1A4E0240DAA9500190879 /* AppDelegate.swift in Sources */,
-				69A1A515240DACFC00190879 /* ImageAction.swift in Sources */,
 				69A1A4E2240DAA9500190879 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

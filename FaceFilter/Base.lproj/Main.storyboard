@@ -16,14 +16,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EyT-wW-dbj">
-                                <rect key="frame" x="0.0" y="722" width="414" height="140"/>
+                                <rect key="frame" x="0.0" y="697" width="414" height="165"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="2f8-tb-2DI"/>
+                                    <constraint firstAttribute="height" constant="165" id="2f8-tb-2DI">
+                                        <variation key="heightClass=compact" constant="60"/>
+                                    </constraint>
                                 </constraints>
                             </view>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eqK-6h-Gib">
-                                <rect key="frame" x="30" y="118" width="354" height="564"/>
+                                <rect key="frame" x="30" y="118" width="354" height="539"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -38,7 +40,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="FaceFilter" id="4Hf-LY-LCU"/>
+                    <navigationItem key="navigationItem" title="FaceFilter" id="4Hf-LY-LCU">
+                        <barButtonItem key="leftBarButtonItem" image="tray.and.arrow.down.fill" catalog="system" id="2nm-JG-Wok">
+                            <connections>
+                                <action selector="save:" destination="BYZ-38-t0r" id="ny7-DP-1dy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="fSg-7t-zxh">
+                            <connections>
+                                <action selector="add:" destination="BYZ-38-t0r" id="4WA-7g-WNZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="container" destination="EyT-wW-dbj" id="POp-XH-FIg"/>
                         <outlet property="imageView" destination="eqK-6h-Gib" id="d41-0I-HVN"/>
@@ -67,4 +80,7 @@
             <point key="canvasLocation" x="137.68115942028987" y="137.94642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="tray.and.arrow.down.fill" catalog="system" width="64" height="56"/>
+    </resources>
 </document>
